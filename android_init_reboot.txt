@@ -1,0 +1,696 @@
+现象： 
+    恢复出厂设置，系统概率性重启，有可能在开机向导的时候重启，有可能未进入系统就重启，
+
+log:
+   
+   
+ ram console header, hw_status: 2, fiq step 41.
+Not Clear, old status is 2.
+WMT-FUNC][W]wmt_func_wifi_on:WMT-FUNC: wmt wlan func on before wlan probe
+[  301.088092]  (1)[358:mtk_wmtd_worker][wlan]HifAhbProbe:(INIT INFO) HifAhbProbe()
+[  301.088113]  (1)[358:mtk_wmtd_worker][WMT-CONSYS-HW][I]consys_hw_bt_vcn33_ctrl:WMT do BT/WIFI v3.3 on
+[  301.088208]  (1)[358:mtk_wmtd_worker][wlan]wlanNetCreate:(INIT INFO) net_device prDev(0xdd9fe000) allocated ifindex=0
+[  301.088246]  (1)[358:mtk_wmtd_worker][wlan]glSetHifInfo:(INIT INFO) [WiFi/HIF] ChipID=0x6580, HifInfo->HifRegBaseAddr=0xed63e000, HifInfo->McuRegBaseAddr=0xed640000
+[  301.089311]  (1)[358:mtk_wmtd_worker][emi_mpu_set_region_protection] start = 0x3da0 end = 0x3da7 region=5
+[  301.089328]  (1)[358:mtk_wmtd_worker][EMI MPU] emi_physical_offset = 0x80000000
+[  301.089340]  (1)[358:mtk_wmtd_worker][EMI MPU] EMI_MPUA = 0x3ec03fbf
+[  301.089351]  (1)[358:mtk_wmtd_worker][EMI MPU] EMI_MPUB = 0x3c003c4f
+[  301.089362]  (1)[358:mtk_wmtd_worker][EMI MPU] EMI_MPUC = 0x3c503d5f
+[  301.089372]  (1)[358:mtk_wmtd_worker][EMI MPU] EMI_MPUD = 0x3d603d7f
+[  301.089383]  (1)[358:mtk_wmtd_worker][EMI MPU] EMI_MPUE = 0x0
+[  301.089394]  (1)[358:mtk_wmtd_worker][EMI MPU] EMI_MPUF = 0x3da03da7
+[  301.089405]  (1)[358:mtk_wmtd_worker][EMI MPU] EMI_MPUG = 0x3da83daf
+[  301.089415]  (1)[358:mtk_wmtd_worker][EMI MPU] EMI_MPUH = 0x3fff
+[  301.090437]  (1)[358:mtk_wmtd_worker][wlan]glBusSetIrq:(INIT INFO) WIFI-OF: get wifi irq(187)
+[  301.091887]  (0)[242:logd.auditd]type=1400 audit(1420059617.676:92): avc: denied { read } for pid=263 comm="HwBinder:263_3" name="267-1" dev="debugfs" ino=9576 scontext=u:r:merged_hal_service:s0 tcontext=u:object_r:debugfs:s0 tclass=file permissive=0
+[  301.091947]  (0)[242:logd.auditd]type=1400 audit(1420059618.723:93): avc: denied { dac_override } for pid=358 comm="mtk_wmtd_worker" capability=1 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=capability permissive=0
+[  301.092608]  (0)[242:logd.auditd]type=1400 audit(1420059618.723:93): avc: denied { dac_override } for pid=358 comm="mtk_wmtd_worker" capability=1 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=capability permissive=0
+[  301.092642]  (0)[242:logd.auditd]type=1400 audit(1420059618.723:94): avc: denied { dac_read_search } for pid=358 comm="mtk_wmtd_worker" capability=2 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=capability permissive=0
+[  301.099899]  (1)[358:mtk_wmtd_worker]------------[ cut here ]------------
+[  301.099938]  (1)[358:mtk_wmtd_worker]WARNING: CPU: 1 PID: 358 at /home/dd-3-x6/workspace/8022B/mt6580_o1/kernel-3.18/lib/vsprintf.c:1731 vsnprintf+0x64/0x344()
+[  301.099948] Modules linked in: wlan_drv bf123000   (null) 941921 0 (O) wmt_chrdev_wifi bf11e000   (null) 5642 0 (O) gps_drv bf114000   (null) 21874 0 (O) fmradio_drv bf0f0000   (null) 122918 0 (O) bt_drv bf0e9000   (null) 11871 0 (O) wmt_drv bf000000   (null) 819726 0 (O)
+[  301.100016] -(1)[358:mtk_wmtd_worker]CPU: 1 PID: 358 Comm: mtk_wmtd_worker Tainted: G        W  O   3.18.79 #1
+[  301.100026] Backtrace: 
+[  301.100054] -(1)[358:mtk_wmtd_worker][<c010b7a8>] (dump_backtrace) from [<c010b9c0>] (show_stack+0x18/0x1c)
+[  301.100065]  r7:00000000 r6:00000000 r5:600a0013 r4:c0e41c0c
+[  301.100104] -(1)[358:mtk_wmtd_worker][<c010b9a8>] (show_stack) from [<c0933bf0>] (dump_stack+0x88/0xa8)
+[  301.100123] -(1)[358:mtk_wmtd_worker][<c0933b68>] (dump_stack) from [<c01225d8>] (warn_slowpath_common+0x70/0x94)
+[  301.100133]  r7:000006c3 r6:c0b753bc r5:00000009 r4:00000000
+[  301.100169] -(1)[358:mtk_wmtd_worker][<c0122568>] (warn_slowpath_common) from [<c01226e8>] (warn_slowpath_null+0x24/0x2c)
+[  301.100179]  r8:dc65f964 r7:dc65fdd5 r6:dc5688a0 r5:00000000
+[  301.100217] -(1)[358:mtk_wmtd_worker][<c01226c4>] (warn_slowpath_null) from [<c03c76f4>] (vsnprintf+0x64/0x344)
+[  301.100232] -(1)[358:mtk_wmtd_worker][<c03c7690>] (vsnprintf) from [<c03c7f78>] (snprintf+0x30/0x50)
+[  301.100241]  r10:dc688840 r9:00000000 r8:bf1caaaa r7:c0e1fe48
+[  301.100461] -(1)[358:mtk_wmtd_worker][<c03c7f4c>] (snprintf) from [<bf1231ac>] (dumpMemory8IEOneLine+0xf8/0x130 [wlan_drv])
+[  301.100473]  r3:00000000 r2:bf1caaaa
+[  301.100492]  r4:dc5687ed
+[  301.100509] -(1)[358:mtk_wmtd_worker]Backtrace aborted due to bad pc <bf1230b8>
+[  301.100521]  (1)[358:mtk_wmtd_worker]---[ end trace 62b1e8f0d4425593 ]---
+[  301.100556]  (1)[358:mtk_wmtd_worker][wlan][52:65:67:49:6e:66],Len:944:[00,00,00,00,00,00,00,00,00,00,00,00,00,00,26,26,00,00,22,22,22,22,21,21,22,22,22,20,20,20,21,21,21,1e,1e,1e,22,22,22,22,22,22,22,22,22,20,20,20,22,22,22,20,20,20,00,00,00,00,00,00,00,00,00,00,01,20,18,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,01,00,01,26,1e,1a,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00 (3)[1:init]init: starting service 'memsicp'...
+[  301.121816]  (3)[358:mtk_wmtd_worker][wlan]kalFirmwareImageMapping:(INIT INFO) FW WIFI_RAM_CODE_6580: request done [0]
+[  301.121868]  (3)[358:mtk_wmtd_worker][wlan]nicAllocateAdapterMemory:(NIC INFO) Allocating 4096 bytes for COMMON MGMT MEMORY POOL.
+[  301.121910]  (3)[358:mtk_wmtd_worker][wlan]nicAllocateAdapterMemory:(NIC INFO) Allocating 298800 bytes for SW_RFB_T.
+[  301.122042]  (3)[358:mtk_wmtd_worker][wlan]nicAllocateAdapterMemory:(NIC INFO) Allocating 425984 bytes for MSDU_INFO_T.
+[  301.127161]  (3)[1:init]init: PropSet [init.svc.memsicp]=[running] Done
+[  301.127435]  (3)[1:init]init: property_set("ro.boottime.memsicp", "301110618237") failed: property already set
+[  301.164540]  (2)[401:HwBinder:263_2][name:ion_mm_heap&][ion_dbg] alloc_pages order=4 cache=0
+[  301.165326]  (2)[401:HwBinder:263_2][name:ion_mm_heap&][ion_dbg] alloc_pages order=1 cache=0
+[  301.169742]  (3)[358:mtk_wmtd_worker][wlan]wlanAdapterStart:(INIT INFO) <wifi> Start to download firmware, time=1170
+[  301.169771] [wlan]wlanDumpMcuChipId:(INIT INFO) Offset:0x8, Value:0x00006580 
+[  301.189429]  (1)[401:HwBinder:263_2][ION]warn: ion mm heap allocate buffer size: 4149248 time: 26442692 ns --10
+[  301.193534]  (1)[401:HwBinder:263_2][name:ion_mm_heap&][ion_dbg] alloc_pages order=1 cache=0
+[  301.216731]  (1)[401:HwBinder:263_2][ION]warn: ion mm heap allocate buffer size: 4149248 time: 24160231 ns --10
+[  301.296642]  (3)[1893:HwBinder:263_3][name:ion_mm_heap&][ion_dbg] alloc_pages order=1 cache=0
+[  301.320876]  (3)[1:init]init: Sending signal 9 to service 'memsicp' (pid 2107) process group...
+[  301.321224]  (3)[1:init]init: Successfully killed process cgroup uid 1000 pid 2107 in 0ms
+[  301.321762]  (3)[1:init]init: PropSet [init.svc.memsicp]=[restarting] Done
+[  301.775333]  (2)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  302.181443]  (3)[189:wdtk-3][WDK]: kick Ex WDT,RT[302181422257]
+[  302.631460]  (0)[1893:HwBinder:263_3][ION]warn: ion mm heap allocate buffer size: 4149248 time: 1227246618 ns --10
+[  302.631551]  (0)[1893:HwBinder:263_3][ION]warn: ion alloc buffer size: 4149248 time: 1227369618 ns
+[  303.677624]  (0)[358:mtk_wmtd_worker][wlan]wlanAdapterStart:(INIT ERROR) FW download timeout > 2.5s, FWDL dump info(206)
+[  303.779269]  (2)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  303.801731]  (0)[358:mtk_wmtd_worker][wlan]wlanAdapterStart:(INIT INFO) <wifi> Download FW done, total cnt11=216 spend time=2633
+[  303.801775]  (0)[358:mtk_wmtd_worker][wlan]wlanAdapterStart:(INIT INFO) <wifi> send Wi-Fi Start command
+[  304.067178]  (0)[358:mtk_wmtd_worker][STPDbg]stp_dbg_set_wifiver: wifiver(65710b01)
+[  304.067209]  (0)[358:mtk_wmtd_worker][wlan]wlanQueryNicCapability:(INIT INFO) <wifi> ProductID: 0x6571 FwVer: 0xb01.67 DriVer:11_70_20170324_1_TC10
+[  304.068740]  (0)[358:mtk_wmtd_worker][wlan]kalIndicateStatusAndComplete:(AIS INFO) [wifi] wlan%d netif_carrier_off
+[  304.069173]  (0)[358:mtk_wmtd_worker][wlan]scnInit:(SCN INFO) ->scnInit()
+[  304.069770]  (0)[358:mtk_wmtd_worker][wlan]wlanLoadManufactureData:(INIT INFO) current NVRAMSize :0 and extend Size:1024
+[  304.069805]  (0)[358:mtk_wmtd_worker][wlan]wlanLoadManufactureData:(INIT INFO) HW_Dis(1), TxPwrValid(1)
+[  304.069827]  (0)[358:mtk_wmtd_worker][wlan]wlanLoadManufactureData:(INIT INFO) NVRAM 5G Enable(0) SW_En(0) HW_Dis(1) CountryCode(0x0 0x0)
+[  304.069854]  (0)[358:mtk_wmtd_worker][wlan]rlmDomainGetDomainInfo:(RLM INFO) No matched country code, use the default regulatory domain
+[  304.069892]  (0)[358:mtk_wmtd_worker][wlan]rlmDomainSendPwrLimitCmd:(RLM INFO) Domain: ValidCC =0x0000, ucNum=0
+[  304.079277]  (0)[2131:tx_thread][wlan]tx_thread:(INIT INFO) tx_thread starts running...
+[  304.079515]  (0)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L][RESTORE] 2G4 : CalVal : 0x0  ,  A2DP : 0  , SCO : 0  , CFG : 0  ,  CalValueFail : 0  
+[  304.079515] 
+[  304.080216]  (0)[2131:tx_thread][name:wlan_drv&][wlan]wlanProcessCommandQueue:(TX INFO) No TC4 resource to send cmd, CID=0x13, SEQ=226, CMD type=1, OID=0
+[  304.142185]  (0)[2131:tx_thread][name:wlan_drv&][wlan]wlanProcessCommandQueue:(TX INFO) No TC4 resource to send cmd, CID=0x3d, SEQ=230, CMD type=1, OID=0
+[  304.142568]  (0)[2131:tx_thread][name:wlan_drv&][wlan]wlanProcessCommandQueue:(TX INFO) No TC4 resource to send cmd, CID=0xc1, SEQ=232, CMD type=1, OID=1
+[  304.145099] [wlan]wlanProbe:(INIT INFO) MAC address: 00:08:22:e6:0f:00 
+[  304.145441]  (0)[358:mtk_wmtd_worker][wlan]wlanFwFileCfg:(INIT INFO) read wifi_fw.cfg fail
+[  304.145770]  (0)[242:logd.auditd]type=1400 audit(1420059618.723:94): avc: denied { dac_read_search } for pid=358 comm="mtk_wmtd_worker" capability=2 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=capability permissive=0
+[  304.145810]  (0)[242:logd.auditd]type=1400 audit(1420059621.776:95): avc: denied { dac_override } for pid=358 comm="mtk_wmtd_worker" capability=1 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=capability permissive=0
+[  304.146230]  (0)[242:logd.auditd]type=1400 audit(1420059621.776:95): avc: denied { dac_override } for pid=358 comm="mtk_wmtd_worker" capability=1 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=capability permissive=0
+[  304.146267]  (0)[242:logd.auditd]type=1400 audit(1420059621.776:96): avc: denied { dac_read_search } for pid=358 comm="mtk_wmtd_worker" capability=2 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=capability permissive=0
+[  304.152447]  (0)[358:mtk_wmtd_worker][MTK-WIFI] register_set_p2p_mode_handler: (pid 358) register set p2p mode handler bf1594a4
+[  304.152594]  (0)[358:mtk_wmtd_worker][WMT-FUNC][W]wmt_func_wifi_on:WMT-FUNC: wmt call wlan probe ok
+[  304.152627]  (0)[358:mtk_wmtd_worker][WMT-CORE][I]wmt_core_dump_func_state:[AF FUNC ON]status(b:0 f:0 g:0 w:2 lpbk:2 coredump:0 wmt:2 ant:0 sd1:0 sd2:0 stp:0)
+[  304.154015]  (0)[2131:tx_thread][wlan]wlanReadFwInfoFromEmi:(RX WARN) Invalid PreIdx, reset PreIdx to 33
+[  304.154080]  (0)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L]Recv EvtDrvnLog FwCust:1 DriverSupport:9 Eng:0 ln:33
+[  304.154080] 
+[  304.154102]  (3)[261:android.hardwar][HIF-SDIO][I]mtk_wcn_wmt_func_ctrl:OPID(30) type(3) ok
+[  304.154124]  (3)[261:android.hardwar][MTK-WIFI] WIFI_write: WMT turn on WIFI success!
+[  304.154166]  (3)[261:android.hardwar][MTK-WIFI] WIFI_close: major 153 minor 0 (pid 261)
+[  304.156262]  (0)[1:init]init: PropSet [wlan.driver.status]=[ok] Done
+[  304.158158]  (0)[261:android.hardwar][MTK-WIFI] WIFI_open: major 153 minor 0 (pid 261)
+[  304.158205]  (0)[261:android.hardwar][MTK-WIFI] WIFI_write: WIFI_write STA
+[  304.158227]  (0)[261:android.hardwar][wlan]set_p2p_mode_handler:(INIT INFO) 1 0
+[  304.158317]  (0)[2131:tx_thread][wlan]wlanoidSetP2pMode:(P2P INFO) Set P2P enable dda3deb4 [1] mode[0]
+[  304.158484]  (0)[2131:tx_thread][wlan]rlmActivateNetwork:(RLM INFO) rlm: active=0, Type=1, Src=0, SrcVal=0
+[  304.158503]  (0)[2131:tx_thread][wlan]p2pFsmStateTransition:(P2P STATE) [22] TRANSITION: [0] -> [0]
+[  304.165762]  (0)[261:android.hardwar][wlan]p2pInit:(P2P INFO) dev name=p2p0
+[  304.182112]  (0)[261:android.hardwar][MTK-WIFI] WIFI_write: Set wlan mode 0 --> 2
+[  304.182156]  (0)[261:android.hardwar][MTK-WIFI] WIFI_close: major 153 minor 0 (pid 261)
+[  304.182530]  (0)[2131:tx_thread][wlan]wlanoidSetPacketFilter:(REQ INFO) [MC debug] u4PacketFilter=a, IsSuspend=0
+[  304.182564]  (0)[2131:tx_thread][wlan]wlanoidSetCurrentPacketFilter:(REQ INFO) [MC debug] u4OsPacketFilter=a
+[  304.183412]  (3)[2131:tx_thread][wlan]wlanoidSet802dot11PowerSaveProfile:(OID INFO) Set Wi-Fi PS mode to CAM (0)
+[  304.188322]  (0)[261:android.hardwar]IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+[  304.188330]  (3)[2131:tx_thread][wlan]wlanoidSetPacketFilter:(REQ INFO) [MC debug] u4PacketFilter=a, IsSuspend=0
+[  304.188345]  (3)[2131:tx_thread][wlan]wlanoidSetCurrentPacketFilter:(REQ INFO) [MC debug] u4OsPacketFilter=a
+[  304.266955]  (0)[2131:tx_thread][wlan]wlanoidSetPacketFilter:(REQ INFO) [MC debug] u4PacketFilter=a, IsSuspend=0
+[  304.266990]  (0)[2131:tx_thread][wlan]wlanoidSetCurrentPacketFilter:(REQ INFO) [MC debug] u4OsPacketFilter=a
+[  304.274467]  (3)[1:init]init: [PropSet]: pid:302 uid:1010 gid:1010 ctl.start, wpa_supplicant
+[  304.274507]  (3)[1:init]init: 
+[  304.276455]  (3)[1:init]init: starting service 'wpa_supplicant'...
+[  304.279246]  (3)[1:init]init: PropSet [init.svc.wpa_supplicant]=[running] Done
+[  304.291604]  (3)[2133:init]init: Created socket '/dev/socket/wpa_wlan0', mode 660, user 1010, group 1010
+[  304.528325]  (3)[2133:wpa_supplicant]Dump cpuinfo
+[  304.626509]  (2)[2133:wpa_supplicant][wlan]mtk_cfg80211_flush_pmksa:(REQ INFO) --> mtk_cfg80211_flush_pmksa()
+[  304.801921]  (2)[2133:wpa_supplicant][wlan]mtk_p2p_cfg80211_change_iface:(P2P INFO) mtk_p2p_cfg80211_change_iface. type: 2
+[  304.802035]  (2)[2131:tx_thread][wlan]nicUpdateBss:(NIC INFO) nicUpdateBss eNetworkTypeIdx: 1
+[  304.802696]  (2)[2131:tx_thread][wlan]wlanoidSetPacketFilter:(REQ INFO) [MC debug] u4PacketFilter=4000000a, IsSuspend=0
+[  304.803525]  (2)[2131:tx_thread][wlan]qmHandleEventBssAbsencePresence:(QM INFO) NAF=1,0,0
+[  304.818165]  (2)[2133:wpa_supplicant][wlan]mtk_p2p_cfg80211_set_power_mgmt:(P2P INFO) mtk_p2p_cfg80211_set_power_mgmt ps=0.
+[  304.818660]  (2)[2133:wpa_supplicant]IPv6: ADDRCONF(NETDEV_UP): p2p0: link is not ready
+[  305.008950]  (1)[2131:tx_thread][wlan]wlanoidSetPacketFilter:(REQ INFO) [MC debug] u4PacketFilter=4000000a, IsSuspend=0
+[  305.014677]  (2)[2131:tx_thread][wlan]wlanoidSetPacketFilter:(REQ INFO) [MC debug] u4PacketFilter=4000000e, IsSuspend=0
+[  305.019680]  (2)[2131:tx_thread][wlan]wlanoidSetPacketFilter:(REQ INFO) [MC debug] u4PacketFilter=4000000a, IsSuspend=0
+[  305.022746]  (3)[2131:tx_thread][wlan]wlanoidSetPacketFilter:(REQ INFO) [MC debug] u4PacketFilter=4000000e, IsSuspend=0
+[  305.027219]  (2)[2133:wpa_supplicant][wlan]wlanHandleSystemResume:(INIT INFO) ************wlan System Resume.
+[  305.032758]  (3)[2133:wpa_supplicant][wlan]wlanHandleSystemResume:(INIT INFO) ip is not avalible.
+[  305.032803]  (3)[2133:wpa_supplicant][wlan]wlanHandleSystemResume:(INIT INFO) Query BSS result: 1 0 0, IP: 0.0.0.0, rStatus: 3221225473
+[  305.033128]  (2)[2133:wpa_supplicant][wlan]p2pHandleSystemResume:(P2P INFO) ip is not available.
+[  305.033432]  (2)[2133:wpa_supplicant][wlan]wlanDoIOCTL:(INIT INFO) wlanDoIOCTL Cmd= 0x89f1
+[  305.033463]  (2)[2133:wpa_supplicant][wlan]priv_support_driver_cmd:(REQ INFO) priv_support_driver_cmd: driver cmd "SETSUSPENDMODE 0" on wlan0
+[  305.035300]  (2)[2131:tx_thread][wlan]wlanoidSet802dot11PowerSaveProfile:(OID INFO) Set Wi-Fi PS mode to FAST PS (2)
+[  305.090568] [wlan]mtk_cfg80211_vendor_get_roaming_capabilities:(REQ INFO) Get roaming capabilities: max black/whitelist=16/8
+[  305.106448]  (2)[261:android.hardwar][wlan]mtk_cfg80211_vendor_config_roaming:(REQ INFO) Receives roaming blacklist & whitelist with data_len=16
+[  305.106482]  (2)[261:android.hardwar][wlan]mtk_cfg80211_vendor_config_roaming:(REQ INFO) Get the number of blacklist=0
+[  305.106496]  (2)[261:android.hardwar][wlan]aisRefreshFWKBlacklist:(AIS INFO) Refresh all the BSSes' fgIsInFWKBlacklist to FALSE
+[  305.121744]  (2)[1146:WifiStateMachin]alarm_dev: alarm 2 set 325.119000000
+[  305.121773] -(2)[1146:WifiStateMachin]alarmtimer_enqueue: 39 callbacks suppressed
+[  305.121786] -(2)[1146:WifiStateMachin]alarmtimer_enqueue, 325119000000
+[  305.126963]  (2)[302:wificond][wlan]mtk_cfg80211_scan:(REQ INFO) mtk_cfg80211_scan(), n_ssids=1, num_ssid=(1=>0), wildcard=0x1
+[  305.127070]  (0)[2131:tx_thread][wlan]wlanoidGetChannelInfo:(OID INFO) Partial Scan: set channel i=13
+[  305.127090]  (0)[2131:tx_thread][wlan]aisFsmSteps:(AIS STATE) [13] TRANSITION: [0] -> [2]
+[  305.127116]  (0)[2131:tx_thread][wlan]rlmActivateNetwork:(RLM INFO) rlm: active=0, Type=0, Src=2, SrcVal=2
+[  305.127174]  (0)[2131:tx_thread][wlan]scnFsmSteps:(SCN STATE) [19] TRANSITION: [0] -> [1]
+[  305.127200] [wlan]scnSendScanReqV2:(SCN INFO) ScanReqV3: ScanType=1, SSIDType=1, Num=0, ChannelType=4, Num=13
+[  305.128965]  (0)[2131:tx_thread][wlan]nicTxCmd:(TX INFO) ucCmdSeqNum =3, ucCID =4
+[  305.131665]  (0)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L]FW receive Scan Cmd V3!! SeqNum 1, NT 0, ScanType 1, ChDT 0,  ChType 4, ChNum 13 , SSIDType 1, SSIDNum 0
+[  305.131665] 
+[  305.131705]  (0)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L](1) SCAN_STATE_SCAN_START, ScanType 4, PscnFlag 0x0, PscnEn 0
+[  305.131705] 
+[  305.783204]  (0)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  305.834133]  (3)[2131:tx_thread][wlan]scnFsmGenerateScanDoneMsg:(SCN INFO) Rcv Scan Done, NetIdx 0, Obss 0, Status 0, Seq 1 ,STA MAC:[00:08:22:e6:0f:00] FwVer: 0xb01.67 DriVer:11_70_20170324_1_TC10
+[  305.834167]  (3)[2131:tx_thread][wlan]scnFsmSteps:(SCN STATE) [19] TRANSITION: [1] -> [0]
+[  305.834199]  (3)[2131:tx_thread][wlan]wlanCheckConnectedAP:(SCN WARN) disconnect state, no need to report!
+[  305.834414]  (3)[2131:tx_thread][wlan]aisFsmSteps:(AIS STATE) [13] TRANSITION: [2] -> [0]
+[  305.834432]  (3)[2131:tx_thread][wlan]aisFsmGetNextRequest:(AIS INFO) aisFsmGetNextRequest
+[  305.834448]  (3)[2131:tx_thread][wlan]rlmDeactivateNetwork:(RLM INFO) rlmDeactivateNetwork, Type = 0, Src = 3, Active = 1, SrcVal= 0
+[  305.842555]  (0)[2131:tx_thread][wlan]qmHandleEventBssAbsencePresence:(QM INFO) NAF=0,0,0
+[  305.842618]  (0)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L](1) [SCAN]: TotalChNum 13, ToDriver 9, Bcn 9, ProbeRsp 21, [1,12],[2,8],[3,15],[4,30],[5,8],[6,8],[7,7],[8,5],[9,7],[10,12],[11,10],[12,3],[13,9],
+[  305.842618] 
+[  305.960057]  (1)[183:bat_thread_kthr][BAT_thread]Cable out 
+[  305.976994]  (2)[183:bat_thread_kthr]AvgVbat=(4076,4053),AvgI=(0,0),VChr=246,AvgT=(31,32),SOC=(87,87),UI_SOC=87,ZCV=4524,CHR_Type=0 bcct:0:0 I:55000 Ibat:-949
+[  305.977030]  (2)[183:bat_thread_kthr]UI_SOC=(87), resetBatteryMeter=(0)
+[  305.977120]  (2)[183:bat_thread_kthr]mtk_rtc_common: set_rtc_spare_fg_value, 87
+[  306.113130]  (0)[1:init]init: starting service 'memsicp'...
+[  306.117823]  (0)[1:init]init: PropSet [init.svc.memsicp]=[running] Done
+[  306.118010]  (0)[1:init]init: property_set("ro.boottime.memsicp", "306115101584") failed: property already set
+[  306.267862]  (0)[1:init]init: Sending signal 9 to service 'memsicp' (pid 2168) process group...
+[  306.268289]  (0)[1:init]init: Successfully killed process cgroup uid 1000 pid 2168 in 0ms
+[  306.268714]  (0)[1:init]init: PropSet [init.svc.memsicp]=[restarting] Done
+[  306.821165]  (1)[289:batterywarning][Battery] show_BatteryNotify : 0
+[  307.786257]  (0)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  308.478163]  (0)[4:kworker/0:0][HIF-SDIO][I]wmt_dev_tra_poll:**poll_during_time = 8480 > 3000, during_count = 883 > 200, query
+[  308.478234]  (0)[4:kworker/0:0][STP-PSM] [I]_stp_psm_do_wait: STP is waiting state for ACT, i=1, state = 2
+[  308.478257] -(1)[345:mtk_stp_psm]_stp_psm_proc: 2 callbacks suppressed
+[  308.478275]  (1)[345:mtk_stp_psm][STP-PSM] [I]_stp_psm_proc: pOp(bf08d5f0):1(1)
+[  308.478359]  (1)[357:mtk_wmtd][HIF-SDIO][I]wmtd_thread:pOp(bf08f028):7(1)-0-2,bf00a538,0,0
+[  308.501477]  (0)[4:kworker/0:0][STP-PSM] [I]_stp_psm_do_wait: +Total waits for ACT takes 23226 usec
+[  308.501976]  (2)[357:mtk_wmtd][HIF-SDIO][I]wmtd_thread:pOp(bf08ef98):15(2)-0-1,0,0,0
+[  308.502454]  (2)[357:mtk_wmtd][HIF-SDIO][I]wmtd_thread:pOp(bf08f070):15(2)-0-2,0,0,0
+[  308.502831]  (2)[357:mtk_wmtd][HIF-SDIO][I]wmtd_thread:pOp(bf08f0b8):15(2)-0-3,0,0,0
+[  308.503239]  (0)[4:kworker/0:0][HIF-SDIO][I]wmt_dev_tm_temp_query:[Thermal] current_temp = 0x2e
+[  308.534852]  (2)[345:mtk_stp_psm][STP-PSM] [I]_stp_psm_proc: pOp(bf08d7a0):0(1)
+[  308.534952]  (2)[357:mtk_wmtd][HIF-SDIO][I]wmtd_thread:pOp(bf08f148):7(1)-0-0,bf00a538,0,0
+[  308.818912]  (1)[2319:IntentService[R]F2FS-fs (mmcblk0p25): Unexpected flush for atomic writes: ino=2626, npages=191
+[  309.164781]  (0)[2131:tx_thread][wlan]rlmDeactivateNetwork:(RLM INFO) rlmDeactivateNetwork, Type = 1, Src = 0, Active = 1, SrcVal= 0
+[  309.166194]  (2)[2131:tx_thread][wlan]qmHandleEventBssAbsencePresence:(QM INFO) NAF=1,0,0
+[  309.166485]  (0)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L][412] #T#5357# Ver:0xB.1.67 CS[1,1] BCN[0, 0, 0, 0, 0x0, 0x0] RCPI [255, 255, 255, 255], ROAM [0, 0, 0, 0, 255, 0, 255, 0] TXPara[0x0, 0x0, 0x31330000, 0x0, 0x0,0x0, 0x12121212, 0x82000, 0x12000000, I: (0, 0), C: (0, 0), W: 5331579 CHP: (255, 255) ], TxBASz 0, RxBASz 0  Gamemode 0 Mem 63 Dg 0, 0, 0, 0, 0, 0, Kd:0 TP(T:5 R:0)Kbps, BTOn 0, Suspend=0 Hotspot=0, TestMode 0, EB 0 <BCM>0x0(0000000) 250 3 107 140 00000000
+[  309.166485] 
+[  309.166634]  (0)[2131:tx_thread][wlan]wlanReadFwInfoFromEmi:(RX INFO) >>Addr:0xcedcd248 CurIdx:825,PreIdx:33!
+[  309.166658]  (0)[2131:tx_thread][HIF-SDIO][I]wmt_lib_get_fwinfor_from_emi:vir addr(0xe4f80421)
+[  309.166749]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#0#0#<INIT>EasyDbg set 115 CMD_EDCCA_THRESHOLD =0x0
+[  309.166762]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#3#1#WF Ready Init
+[  309.166775]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#257#2#<RXM>Send EID:0x9 Seq:218 Len:20
+[  309.166788]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#258#3#<RXM>Send EID:0x2 Seq:219 Len:40
+[  309.166801]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#258#4#<RXM>Send EID:0x1F Seq:220 Len:272
+[  309.166814]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#259#5#<RXM>Send EID:0x1F Seq:221 Len:272
+[  309.166826]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#334#6#WF Ready CalNo5G
+[  309.166839]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#335#7#<RXM>Send EID:0x9 Seq:232 Len:20
+[  309.166851]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#351#8#[MAC]  OWN MAC En : 1 
+[  309.166862] [wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#994#9#<SCN>bssUpdateBssInfo(),(1
+[  309.166878]  (0)[2131:tx_thread][HIF-SDIO][I]wmt_lib_get_fwinfor_from_emi:vir addr(0xe4f80621)
+[  309.166967]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) , 0, 1, 0, 1, 0)update
+[  309.166980]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#1219#10#<RXM>Send EID:0xF9 Seq:254 Len:20
+[  309.166992]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#1319#11#[MAC]  OWN MAC En : 1 
+[  309.167005]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#2025#12#<RXM>Send EID:0x15 Seq:0 Len:12
+[  309.167017]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#2025#13#[MAC]  OWN MAC Dis : 0 
+[  309.167030] [wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#5356#14#[MAC]  OWN MAC Dis : 0 
+[  309.167042]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [  309.167058]  (0)[2131:tx_thread][HIF-SDIO][I]wmt_lib_get_fwinfor_from_emi:vir addr(0xe4f80600)
+[  309.167110]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) #994#9#<SCN>bssUpdateBssInfo(),(1, 0, 1, 0, 1, 0)update
+[  309.167124]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#1219#10#<RXM>Send EID:0xF9 Seq:254 Len:20
+[  309.167136]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#1319#11#[MAC]  OWN MAC En : 1 
+[  309.167148]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#2025#12#<RXM>Send EID:0x15 Seq:0 Len:12
+[  309.167161]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#2025#13#[MAC]  OWN MAC Dis : 0 
+[  309.167170] [wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]
+[  309.255547]  (2)[2335:ps]Dump cpuinfo
+[  309.790931]  (1)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  311.122379]  (3)[1:init]init: starting service 'memsicp'...
+[  311.125116]  (3)[1:init]init: PropSet [init.svc.memsicp]=[running] Done
+[  311.125299]  (3)[1:init]init: property_set("ro.boottime.memsicp", "311121697624") failed: property already set
+[  311.200984]  (1)[1:init]init: Sending signal 9 to service 'memsicp' (pid 2437) process group...
+[  311.201245]  (1)[1:init]init: Successfully killed process cgroup uid 1000 pid 2437 in 0ms
+[  311.201791]  (1)[1:init]init: PropSet [init.svc.memsicp]=[restarting] Done
+[  311.794557]  (2)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  312.158220]  (2)[1254:watchdog]AEEIOCTL_RT_MON_Kick ( 300)
+[  312.158548]  (2)[1254:watchdog][Hang_Detect] hang_detect enabled 10
+[  313.798867]  (0)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  314.229043]  (1)[1:init]init: PropSet [debug.mtk.aee.status]=[free] Done
+[  314.230152]  (0)[242:logd.auditd]type=1400 audit(1420059621.776:96): avc: denied { dac_read_search } for pid=358 comm="mtk_wmtd_worker" capability=2 scontext=u:r:kernel:s0 tcontext=u:r:kernel:s0 tclass=capability permissive=0
+[  314.230194]  (0)[242:logd.auditd]type=1400 audit(1420059631.859:97): avc: denied { open } for pid=521 comm="aee_aed" path="/sys/kernel/debug/tracing/tracing_on" dev="tracefs" ino=1049 scontext=u:r:aee_aed:s0 tcontext=u:object_r:debugfs_tracing:s0 tclass=file permissive=0
+[  315.182818]  (0)[302:wificond][wlan]mtk_cfg80211_scan:(REQ INFO) mtk_cfg80211_scan(), n_ssids=1, num_ssid=(1=>0), wildcard=0x1
+[  315.182938]  (0)[2131:tx_thread][wlan]wlanoidGetChannelInfo:(OID INFO) Partial Scan: set channel i=13
+[  315.182958]  (0)[2131:tx_thread][wlan]aisFsmSteps:(AIS STATE) [13] TRANSITION: [0] -> [2]
+[  315.182984]  (0)[2131:tx_thread][wlan]rlmActivateNetwork:(RLM INFO) rlm: active=0, Type=0, Src=2, SrcVal=2
+[  315.183048]  (0)[2131:tx_thread][wlan]scnFsmSteps:(SCN STATE) [19] TRANSITION: [0] -> [1]
+[  315.183075] [wlan]scnSendScanReqV2:(SCN INFO) ScanReqV3: ScanType=1, SSIDType=1, Num=0, ChannelType=4, Num=13
+[  315.190638]  (0)[1152:WifiScanningSer]alarm_dev: alarm 2 set 330.188000000
+[  315.190674] -(0)[1152:WifiScanningSer]alarmtimer_enqueue, 330188000000
+[  315.199058]  (0)[2131:tx_thread][wlan]nicTxCmd:(TX INFO) ucCmdSeqNum =12, ucCID =4
+[  315.200701]  (0)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L][413] #T#11381# Ver:0xB.1.67 CS[1,1] BCN[0, 0, 0, 0, 0x0, 0x4000] RCPI [255, 255, 255, 255], ROAM [0, 0, 0, 0, 255, 0, 255, 0] TXPara[0x0, 0x0, 0x31330000, 0x0, 0x0,0x0, 0x12121212, 0x82000, 0x12000000, I: (0, 0), C: (0, 0), W: 1062 CHP: (255, 255) ], TxBASz 0, RxBASz 0  Gamemode 0 Mem 64 Dg 0, 0, 0, 0, 0, 0, Kd:0 TP(T:0 R:0)Kbps, BTOn 0, Suspend=0 Hotspot=0, TestMode 0, EB 0 <BCM>0x0(0000000) 250 3 107 140 00000000
+[  315.200701] 
+[  315.203326]  (0)[2131:tx_thread][wlan]wlanReadFwInfoFromEmi:(RX INFO) >>Addr:0xcedcf108 CurIdx:873,PreIdx:825!
+[  315.203358]  (0)[2131:tx_thread][HIF-SDIO][I]wmt_lib_get_fwinfor_from_emi:vir addr(0xe4f80739)
+[  315.203378] [wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#11391#15#[MAC]  OWN MAC En : 1 
+[  315.203407]  (0)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L]FW receive Scan Cmd V3!! SeqNum 2, NT 0, ScanType 1, ChDT 0,  ChType 4, ChNum 13 , SSIDType 1, SSIDNum 0
+[  315.203407] 
+[  315.203425]  (0)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L](2) SCAN_STATE_SCAN_START, ScanType 4, PscnFlag 0x0, PscnEn 0
+[  315.203425] 
+[  315.809285]  (0)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  315.960082]  (0)[183:bat_thread_kthr][BAT_thread]Cable out 
+[  315.982363]  (0)[183:bat_thread_kthr]AvgVbat=(4077,4067),AvgI=(0,0),VChr=236,AvgT=(31,32),SOC=(87,87),UI_SOC=87,ZCV=4524,CHR_Type=0 bcct:0:0 I:55000 Ibat:-898
+[  315.982395]  (0)[183:bat_thread_kthr]UI_SOC=(87), resetBatteryMeter=(0)
+[  315.982466]  (0)[183:bat_thread_kthr]mtk_rtc_common: set_rtc_spare_fg_value, 87
+[  315.985353]  (0)[264:healthd]healthd: battery l=87 v=4077 t=31.0 h=2 st=3 c=898 chg=
+[  316.123929]  (0)[1:init]init: starting service 'memsicp'...
+[  316.142452]  (0)[1:init]init: PropSet [init.svc.memsicp]=[running] Done
+[  316.142604]  (0)[1:init]init: property_set("ro.boottime.memsicp", "316140085203") failed: property already set
+[  316.199221]  (1)[2131:tx_thread][wlan]scnFsmGenerateScanDoneMsg:(SCN INFO) Rcv Scan Done, NetIdx 0, Obss 0, Status 0, Seq 2 ,STA MAC:[00:08:22:e6:0f:00] FwVer: 0xb01.67 DriVer:11_70_20170324_1_TC10
+[  316.199257]  (1)[2131:tx_thread][wlan]scnFsmSteps:(SCN STATE) [19] TRANSITION: [1] -> [0]
+[  316.199277]  (1)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L](2) [SCAN]: TotalChNum 13, ToDriver 8, Bcn 18, ProbeRsp 16, [1,13],[2,15],[3,12],[4,60],[5,15],[6,25],[7,11],[8,3],[9,10],[10,17],[11,21],[12,9],[13,5],
+[  316.199277] 
+[  316.199314]  (1)[2131:tx_thread][wlan]wlanCheckConnectedAP:(SCN WARN) disconnect state, no need to report!
+[  316.199588]  (1)[2131:tx_thread][wlan]aisFsmSteps:(AIS STATE) [13] TRANSITION: [2] -> [0]
+[  316.199611]  (1)[2131:tx_thread][wlan]aisFsmGetNextRequest:(AIS INFO) aisFsmGetNextRequest
+[  316.199628]  (1)[2131:tx_thread][wlan]rlmDeactivateNetwork:(RLM INFO) rlmDeactivateNetwork, Type = 0, Src = 3, Active = 1, SrcVal= 0
+[  316.204397]  (2)[2131:tx_thread][wlan]qmHandleEventBssAbsencePresence:(QM INFO) NAF=0,0,0
+[  316.214214]  (3)[1152:WifiScanningSer]alarm_dev: alarm 2 set 325.119000000
+[  316.214245] -(3)[1152:WifiScanningSer]alarmtimer_enqueue, 325119000000
+[  316.218384]  (1)[1:init]init: Sending signal 9 to service 'memsicp' (pid 2543) process group...
+[  316.218640]  (1)[1:init]init: Successfully killed process cgroup uid 1000 pid 2543 in 0ms
+[  316.219004]  (1)[1:init]init: PropSet [init.svc.memsicp]=[restarting] Done
+[  316.821697]  (1)[289:batterywarning][Battery] show_BatteryNotify : 0
+[  317.414136]  (0)[1220:Binder:686_3]alarm_dev: alarm 2 set 322.412000000
+[  317.414164] -(0)[1220:Binder:686_3]alarmtimer_enqueue, 322412000000
+[  317.811639]  (3)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  319.088270]  (0)[1:init]init: PropSet [persist.sys.nlp.package]=[com.google.android.gms] Done
+[  319.815428]  (1)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  320.172152]  (0)[1:init]init: Untracked pid 2615 exited with status 0
+[  320.592206]  (2)[1:init]init: Untracked pid 2620 exited with status 0
+[  321.146130]  (1)[1:init]init: starting service 'memsicp'...
+[  321.149634]  (1)[1:init]init: PropSet [init.svc.memsicp]=[running] Done
+[  321.149820]  (1)[1:init]init: property_set("ro.boottime.memsicp", "321147092396") failed: property already set
+[  321.185588]  (3)[1:init]init: Untracked pid 2639 exited with status 0
+[  321.236387]  (1)[1:init]init: Sending signal 9 to service 'memsicp' (pid 2642) process group...
+[  321.236744]  (1)[1:init]init: Successfully killed process cgroup uid 1000 pid 2642 in 0ms
+[  321.237191]  (1)[1:init]init: PropSet [init.svc.memsicp]=[restarting] Done
+[  321.507033]  (0)[1:init]init: Untracked pid 2653 exited with status 0
+[  321.733787]  (3)[1:init]init: Untracked pid 2667 exited with status 0
+[  321.821997]  (3)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  321.894811]  (0)[1:init]init: Untracked pid 2673 exited with status 0
+[  322.184776]  (3)[189:wdtk-3][WDK]: kick Ex WDT,RT[322184755843]
+[  322.339840]  (3)[1:init]init: Untracked pid 2682 exited with status 0
+[  322.413607]  (2)[769:AlarmManager]alarm_dev: alarm 2 set 325.119000000
+[  322.413637] -(2)[769:AlarmManager]alarmtimer_enqueue, 325119000000
+[  323.332290]  (0)[2649:background1-1]Dump cpuinfo
+[  323.825642]  (2)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  324.844164]  (2)[2764:network]Dump cpuinfo
+[  325.121006]  (2)[769:AlarmManager]alarm_dev: alarm 2 set 340.210000000
+[  325.121038] -(2)[769:AlarmManager]alarmtimer_enqueue, 340210000000
+[  325.125982]  (3)[302:wificond][wlan]mtk_cfg80211_scan:(REQ INFO) mtk_cfg80211_scan(), n_ssids=1, num_ssid=(1=>0), wildcard=0x1
+[  325.126686]  (3)[2131:tx_thread][wlan]wlanoidGetChannelInfo:(OID INFO) Partial Scan: set channel i=13
+[  325.126719]  (3)[2131:tx_thread][wlan]aisFsmSteps:(AIS STATE) [13] TRANSITION: [0] -> [2]
+[  325.126749]  (3)[2131:tx_thread][wlan]rlmActivateNetwork:(RLM INFO) rlm: active=0, Type=0, Src=2, SrcVal=2
+[  325.126834]  (3)[2131:tx_thread][wlan]scnFsmSteps:(SCN STATE) [19] TRANSITION: [0] -> [1]
+[  325.126866] [wlan]scnSendScanReqV2:(SCN INFO) ScanReqV3: ScanType=1, SSIDType=1, Num=0, ChannelType=4, Num=13
+[  325.147952]  (2)[2131:tx_thread][wlan]nicTxCmd:(TX INFO) ucCmdSeqNum =15, ucCID =4
+[  325.148351]  (0)[2131:tx_thread][wlan]wlanReadFwInfoFromEmi:(RX INFO) >>Addr:0xcedda948 CurIdx:979,PreIdx:873!
+[  325.148379]  (0)[2131:tx_thread][HIF-SDIO][I]wmt_lib_get_fwinfor_from_emi:vir addr(0xe4f80769)
+[  325.148411]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#12388#16#<RXM>Send EID:0x15 Seq:0 Len:12
+[  325.148424]  (0)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#12391#17#[MAC]  OWN MAC Dis : 0 
+[  325.148456]  (0)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L][416] #T#21324# Ver:0xB.1.67 CS[1,1] BCN[0, 0, 0, 0, 0x0, 0x4000] RCPI [255, 255, 255, 255], ROAM [0, 0, 0, 0, 255, 0, 255, 0] TXPara[0x0, 0x0, 0x31330000, 0x0, 0x0,0x0, 0x12121212, 0x82000, 0x12000000, I: (0, 0), C: (0, 0), W: 1001648 CHP: (255, 255) ], TxBASz 0, RxBASz 0  Gamemode 0 Mem 64 Dg 0, 0, 0, 0, 0, 0, Kd:0 TP(T:5 R:0)Kbps, BTOn 0, Suspend=0 Hotspot=0, TestMode 0, EB 0 <BCM>0x0(0000000) 250 3 107 140 00000000
+[  325.148456] 
+[  325.155543]  (0)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L]FW receive Scan Cmd V3!! SeqNum 3, NT 0, ScanType 1, ChDT 0,  ChType 4, ChNum 13 , SSIDType 1, SSIDNum 0
+[  325.155543] 
+[  325.155579]  (0)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L](3) SCAN_STATE_SCAN_START, ScanType 4, PscnFlag 0x0, PscnEn 0
+[  325.155579] 
+[  325.833482]  (1)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  325.960147]  (0)[183:bat_thread_kthr][BAT_thread]Cable out 
+[  325.981983]  (2)[183:bat_thread_kthr]AvgVbat=(4076,4066),AvgI=(0,0),VChr=236,AvgT=(31,32),SOC=(87,87),UI_SOC=87,ZCV=4524,CHR_Type=0 bcct:0:0 I:55000 Ibat:-917
+[  325.982013]  (2)[183:bat_thread_kthr]UI_SOC=(87), resetBatteryMeter=(0)
+[  325.982104]  (2)[183:bat_thread_kthr]mtk_rtc_common: set_rtc_spare_fg_value, 87
+[  326.160611]  (1)[1:init]init: starting service 'memsicp'...
+[  326.164157]  (1)[1:init]init: PropSet [init.svc.memsicp]=[running] Done
+[  326.164326]  (1)[1:init]init: property_set("ro.boottime.memsicp", "326161655667") failed: property already set
+[  326.245759]  (0)[2131:tx_thread][wlan]scnFsmGenerateScanDoneMsg:(SCN INFO) Rcv Scan Done, NetIdx 0, Obss 0, Status 0, Seq 3 ,STA MAC:[00:08:22:e6:0f:00] FwVer: 0xb01.67 DriVer:11_70_20170324_1_TC10
+[  326.245803]  (0)[2131:tx_thread][wlan]scnFsmSteps:(SCN STATE) [19] TRANSITION: [1] -> [0]
+[  326.245840]  (0)[2131:tx_thread][wlan]wlanCheckConnectedAP:(SCN WARN) disconnect state, no need to report!
+[  326.246345]  (0)[2131:tx_thread][wlan]aisFsmSteps:(AIS STATE) [13] TRANSITION: [2] -> [0]
+[  326.246367]  (0)[2131:tx_thread][wlan]aisFsmGetNextRequest:(AIS INFO) aisFsmGetNextRequest
+[  326.246386]  (0)[2131:tx_thread][wlan]rlmDeactivateNetwork:(RLM INFO) rlmDeactivateNetwork, Type = 0, Src = 3, Active = 1, SrcVal= 0
+[  326.250164]  (0)[1:init]init: Sending signal 9 to service 'memsicp' (pid 2830) process group...
+[  326.250560]  (0)[1:init]init: Successfully killed process cgroup uid 1000 pid 2830 in 0ms
+[  326.250971]  (0)[1:init]init: PropSet [init.svc.memsicp]=[restarting] Done
+[  326.259161]  (3)[2131:tx_thread][wlan]qmHandleEventBssAbsencePresence:(QM INFO) NAF=0,0,0
+[  326.259198]  (3)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L](3) [SCAN]: TotalChNum 13, ToDriver 8, Bcn 14, ProbeRsp 17, [1,4],[2,15],[3,10],[4,23],[5,30],[6,20],[7,10],[8,4],[9,27],[10,4],[11,16],[12,12],[13,8],
+[  326.259198] 
+[  326.822525]  (0)[289:batterywarning][Battery] show_BatteryNotify : 0
+[  327.244901]  (0)[1813:writer]mtk_I2S0dl1_hardware.buffer_bytes_max = 16384 mPlaybackSramState = 8
+[  327.245052]  (0)[1813:writer]mtk_pcm_I2S0dl1_close
+[  327.245943]  (0)[1813:writer]mtk_I2S0dl1_hardware.buffer_bytes_max = 16384 mPlaybackSramState = 8
+[  327.246233]  (0)[1813:writer]1 dma_bytes = 2048 dma_area = e0f51000 dma_addr = 0x9e784000
+[  327.246364]  (0)[1813:writer]mtk_pcm_I2S0dl1_prepare format = 2 SNDRV_PCM_FORMAT_S32_LE = 10 SNDRV_PCM_FORMAT_U32_LE = 12
+[  327.246391]  (0)[1813:writer]SetI2SDacOut SampleRate 48000, lowjitter 0, I2SWLen 0
+[  327.246407] SetI2SDacEnable bEnable = 1
+[  327.246450]  (0)[1813:writer]mt63xx_codec_prepare set up SNDRV_PCM_STREAM_PLAYBACK rate = 48000
+[  327.249374] Ext_Speaker_Use_Set() set = 1
+ 
+[  327.259819]  (0)[1813:writer]Ext_Speaker_Amp_Set() gain = 1
+[  327.259819]  [  327.307810] -(1)[1813:writer]mtk_pcm_I2S0dl1_start
+[  327.371942]  (0)[1:init]init: PropSet [log.tag]=[I] Done
+[  327.425783]  (0)[401:HwBinder:263_2][name:ion_mm_heap&][ion_dbg] alloc_pages order=4 cache=0
+[  327.492695] Ext_Speaker_Amp_Set() gain = 0
+ 
+[  327.493411]  (1)[1511:HwBinder:253_3]TopCkCount <0 =0
+[  327.493411]  Ext_Speaker_Use_Set() set = 0
+ 
+[  327.493727] -(1)[1511:HwBinder:253_3]mtk_pcm_I2S0dl1_stop
+[  327.493966]  (1)[1511:HwBinder:253_3]mtk_pcm_I2S0dl1_close
+[  327.493980] SetI2SDacEnable bEnable = 0
+[  327.506212]  (3)[1:init]init: PropSet [log.tag]=[M] Done
+[  327.835464]  (3)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  328.351416]  (2)[279:merged_hal_serv][name:ion_mm_heap&][ion_dbg] alloc_pages order=4 cache=0
+[  328.373457]  (0)[1813:writer]mtk_I2S0dl1_hardware.buffer_bytes_max = 16384 mPlaybackSramState = 8
+[  328.373660]  (0)[1813:writer]mtk_pcm_I2S0dl1_close
+[  328.374599]  (0)[1813:writer]mtk_I2S0dl1_hardware.buffer_bytes_max = 16384 mPlaybackSramState = 8
+[  328.375120]  (0)[1813:writer]1 dma_bytes = 2048 dma_area = e0f51000 dma_addr = 0x9e784000
+[  328.375282]  (0)[1813:writer]mtk_pcm_I2S0dl1_prepare format = 2 SNDRV_PCM_FORMAT_S32_LE = 10 SNDRV_PCM_FORMAT_U32_LE = 12
+[  328.375316]  (0)[1813:writer]SetI2SDacOut SampleRate 48000, lowjitter 0, I2SWLen 0
+[  328.375336] SetI2SDacEnable bEnable = 1
+[  328.375399]  (0)[1813:writer]mt63xx_codec_prepare set up SNDRV_PCM_STREAM_PLAYBACK rate = 48000
+[  328.380504] Ext_Speaker_Use_Set() set = 1
+ 
+[  328.391002]  (1)[1813:writer]Ext_Speaker_Amp_Set() gain = 1
+[  328.391002]  [  328.403307]  (3)[261:android.hardwar][wlan]mtk_cfg80211_vendor_config_roaming:(REQ INFO) Receives roaming blacklist & whitelist with data_len=16
+[  328.403341]  (3)[261:android.hardwar][wlan]mtk_cfg80211_vendor_config_roaming:(REQ INFO) Get the number of blacklist=0
+[  328.403354]  (3)[261:android.hardwar][wlan]aisRefreshFWKBlacklist:(AIS INFO) Refresh all the BSSes' fgIsInFWKBlacklist to FALSE
+[  328.437748] -(2)[1813:writer]mtk_pcm_I2S0dl1_start
+[  328.615692] Ext_Speaker_Amp_Set() gain = 0
+ 
+[  328.616443]  (3)[1511:HwBinder:253_3]TopCkCount <0 =0
+[  328.616443]  Ext_Speaker_Use_Set() set = 0
+ 
+[  328.616866] -(3)[1511:HwBinder:253_3]mtk_pcm_I2S0dl1_stop
+[  328.617122]  (3)[1511:HwBinder:253_3]mtk_pcm_I2S0dl1_close
+[  328.617139] SetI2SDacEnable bEnable = 0
+[  328.645427]  (1)[1:init]init: [PropSet]: pid:302 uid:1010 gid:1010 ctl.stop, wpa_supplicant
+[  328.645500]  (1)[1:init]init: 
+[  328.645569]  (1)[1:init]init: Sending signal 9 to service 'wpa_supplicant' (pid 2133) process group...
+[  328.878252]  (1)[2131:tx_thread][wlan]wlanoidSetPacketFilter:(REQ INFO) [MC debug] u4PacketFilter=a, IsSuspend=0
+[  328.891181]  (3)[401:HwBinder:263_2][name:ion_mm_heap&][ion_dbg] alloc_pages order=4 cache=0
+[  328.894533]  (1)[1:init]init: Failed to kill process cgroup uid 0 pid 2133 in 248ms, 1 processes remain
+[  328.894816]  (1)[1:init]init: PropSet [init.svc.wpa_supplicant]=[stopping] Done
+[  328.896185]  (3)[401:HwBinder:263_2][name:ion_mm_heap&][ion_dbg] alloc_pages order=1 cache=0
+[  328.909795]  (0)[401:HwBinder:263_2][name:ion_mm_heap&][ion_dbg] alloc_pages order=1 cache=0
+[  328.943454]  (1)[2131:tx_thread][wlan]wlanReadFwInfoFromEmi:(RX INFO) >>Addr:0xcedf4808 CurIdx:1133,PreIdx:979!
+[  328.943487]  (1)[2131:tx_thread][HIF-SDIO][I]wmt_lib_get_fwinfor_from_emi:vir addr(0xe4f807d3)
+[  328.943526]  (1)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#21335#18#[MAC]  OWN MAC En : 1 
+[  328.943539]  (1)[2131:tx_thread][wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#22436#19#<RXM>Send EID:0x15 Seq:0 Len:12
+[  328.943550] [wlan]wlanDumpFwInforPrintBuff:(RX INFO) [CONNSYS][WIFI]#22437#20#[MAC]  OWN MAC Dis : 0 
+[  328.943590]  (1)[2131:tx_thread][wlan]nicRxProcessEventPacket:(RX INFO) [F-L][416] #T#25076# Ver:0xB.1.67 CS[1,1] BCN[0, 0, 0, 0, 0x0, 0x4000] RCPI [255, 255, 255, 255], ROAM [0, 0, 0, 0, 255, 0, 255, 0] TXPara[0x0, 0x0, 0x31330000, 0x0, 0x0,0x0, 0x12121212, 0x82000, 0x12000000, I: (0, 0), C: (0, 0), W: 1104200 CHP: (255, 255) ], TxBASz 0, RxBASz 0  Gamemode 0 Mem 64 Dg 0, 0, 0, 0, 0, 0, Kd:0 TP(T:5 R:0)Kbps, BTOn 0, Suspend=0 Hotspot=0, TestMode 0, EB 0 <BCM>0x0(0000000) 250 3 107 140 00000000
+[  328.943590] 
+[  328.951605]  (0)[401:HwBinder:263_2][ION]warn: page pool alloc pages order: 0 time: 41415538 ns
+[  328.951631]  (0)[401:HwBinder:263_2]Normal per-cpu:
+[  328.951643]  (0)[401:HwBinder:263_2]CPU    0: hi:  186, btch:  31 usd: 145
+[  328.951656]  (0)[401:HwBinder:263_2]CPU    1: hi:  186, btch:  31 usd:  54
+[  328.951668]  (0)[401:HwBinder:263_2]CPU    2: hi:  186, btch:  31 usd: 129
+[  328.951680]  (0)[401:HwBinder:263_2]CPU    3: hi:  186, btch:  31 usd:  59
+[  328.951690]  (0)[401:HwBinder:263_2]HighMem per-cpu:
+[  328.951702]  (0)[401:HwBinder:263_2]CPU    0: hi:  186, btch:  31 usd: 161
+[  328.951718]  (0)[401:HwBinder:263_2]CPU    1: hi:  186, btch:  31 usd: 169
+[  328.951733]  (0)[401:HwBinder:263_2]CPU    2: hi:  186, btch:  31 usd: 117
+[  328.951745]  (0)[401:HwBinder:263_2]CPU    3: hi:  186, btch:  31 usd:  20
+[  328.951766]  (0)[401:HwBinder:263_2]active_anon:22767 inactive_anon:35156 isolated_anon:97
+[  328.951766]  active_file:57735 inactive_file:56410 isolated_file:31
+[  328.951766]  unevictable:8366 dirty:45 writeback:0 unstable:0
+[  328.951766]  free:5527 slab_reclaimable:4954 slab_unreclaimable:7630
+[  328.951766]  mapped:92072 shmem:274 pagetables:5704 bounce:0
+[  328.951766]  free_cma:0
+[  328.951806]  (0)[401:HwBinder:263_2]Normal free:19232kB min:2816kB low:9660kB high:10364kB active_anon:34836kB inactive_anon:60900kB active_file:104764kB inactive_file:102804kB unevictable:13136kB isolated(anon):0kB isolated(file):100kB present:524288kB managed:496388kB mlocked:13136kB dirty:172kB writeback:0kB mapped:164596kB shmem:264kB slab_reclaimable:19816kB slab_unreclaimable:30520kB kernel_stack:10840kB pagetables:22816kB unstable:0kB bounce:0kB free_cma:0kB writeback_tmp:0kB pages_scanned:3248 all_unreclaimable? no
+[  328.951817] lowmem_reserve[]: 0 3608 3608
+[  328.951863]  (0)[401:HwBinder:263_2]HighMem free:2876kB min:448kB low:6812kB high:7468kB active_anon:56232kB inactive_anon:79724kB active_file:126176kB inactive_file:122836kB unevictable:20328kB isolated(anon):388kB isolated(file):24kB present:461824kB managed:461824kB mlocked:18656kB dirty:8kB writeback:0kB mapped:203692kB shmem:832kB slab_reclaimable:0kB slab_unreclaimable:0kB kernel_stack:0kB pagetables:0kB unstable:0kB bounce:0kB free_cma:0kB writeback_tmp:0kB pages_scanned:256 all_unreclaimable? no
+[  328.951873] lowmem_reserve[]: 0 0 0
+[  328.951900] Normal: 838*4kB (UM) 320*8kB (UEM) 226*16kB (UEM) 191*32kB (UEMR) 2*64kB (MR) 1*128kB (R) 1*256kB (R) 0*512kB 1*1024kB (R) 1*2048kB (R) 0*4096kB = 19224kB
+[  328.952007] HighMem: 595*4kB (UMR) 66*8kB (UMR) 4*16kB (MR) 0*32kB 0*64kB 0*128kB 0*256kB 0*512kB 0*1024kB 0*2048kB 0*4096kB = 2972kB
+[  328.952118]  (0)[401:HwBinder:263_2]123759 total pagecache pages
+[  328.952131]  (0)[401:HwBinder:263_2]909 pages in swap cache
+[  328.952143]  (0)[401:HwBinder:263_2]Swap cache stats: add 65897, delete 64989, find 1151/31054
+[  328.952153]  (0)[401:HwBinder:263_2]Free swap  = 679148kB
+[  328.952164]  (0)[401:HwBinder:263_2]Total swap = 718652kB
+[  328.959366]  (0)[401:HwBinder:263_2][ION]warn: ion mm heap allocate buffer size: 4149248 time: 49581000 ns --10
+[  329.027302]  (0)[1:init]init: Service 'wpa_supplicant' (pid 2133) killed by signal 9
+[  329.027804]  (0)[1:init]init: PropSet [init.svc.wpa_supplicant]=[stopped] Done
+[  329.033488]  (0)[401:HwBinder:263_2][name:ion_mm_heap&][ion_dbg] alloc_pages order=1 cache=0
+[  329.047604]  (2)[401:HwBinder:263_2][name:ion_mm_heap&][ion_dbg] alloc_pages order=1 cache=0
+[  329.050702]  (0)[1:init]init: PropSet [debug.mtk.aee.status]=[free] Done
+[  329.077853]  (0)[1:init]init: PropSet [debug.mtk.aee.status]=[dumping] Done
+[  329.085618]  (2)[1:init]init: PropSet [debug.mtk.aee.status]=[free] Done
+[  329.105390]  (3)[401:HwBinder:263_2][ION]warn: ion mm heap allocate buffer size: 4149248 time: 57876693 ns --10
+[  329.144951]  (2)[2131:tx_thread][wlan]wlanoidSetPacketFilter:(REQ INFO) [MC debug] u4PacketFilter=e, IsSuspend=0
+[  329.145011]  (2)[2131:tx_thread][wlan]wlanoidSetCurrentPacketFilter:(REQ INFO) [MC debug] u4OsPacketFilter=a
+[  329.379259]  (1)[261:android.hardwar][MTK-WIFI] WIFI_open: major 153 minor 0 (pid 261)
+[  329.379323]  (1)[261:android.hardwar][MTK-WIFI] WIFI_write: WIFI_write 0
+[  329.379347]  (1)[261:android.hardwar][wlan]set_p2p_mode_handler:(INIT INFO) 0 0
+[  329.379377]  (1)[261:android.hardwar][wlan]p2pNetUnregister:(P2P INFO) P2P unregister_netdev 0xde96a800
+[  329.491854]  (0)[2131:tx_thread][wlan]wlanoidSetP2pMode:(P2P INFO) Set P2P enable dda3deb4 [0] mode[0]
+[  329.491898]  (0)[2131:tx_thread][wlan]wlanoidSetP2pMode:(P2P INFO) p2pRemove
+[  329.491915]  (0)[2131:tx_thread][wlan]p2pFsmUninit:(P2P INFO) ->p2pFsmUninit()
+[  329.491963]  (0)[2131:tx_thread][wlan]nicUpdateBss:(NIC INFO) nicUpdateBss eNetworkTypeIdx: 1
+[  329.524792] [MTK-WIFI] WIFI_write: Turn off p2p/ap mode
+[  329.524854]  (2)[261:android.hardwar][HIF-SDIO][I]mtk_wcn_wmt_func_ctrl:wmt-exp: OPID(4) type(3) start
+[  329.525506]  (2)[357:mtk_wmtd][HIF-SDIO][I]wmtd_thread:pOp(bf08f100):4(2)-0-3,0,0,0
+[  329.525604]  (2)[358:mtk_wmtd_worker][HIF-SDIO][I]wmtd_worker_thread:pOp(bf08f100):31(2)
+[  329.525638]  (2)[358:mtk_wmtd_worker][WMT-FUNC][W]wmt_func_wifi_off:WMT-FUNC: wmt wlan func on before wlan remove
+[  329.525654]  (2)[358:mtk_wmtd_worker][wlan]HifAhbRemove:(INIT INFO) HifAhbRemove()
+[  329.525674]  (2)[358:mtk_wmtd_worker][MTK-WIFI] register_set_p2p_mode_handler: (pid 358) register set p2p mode handler   (null)
+[  329.526856]  (2)[358:mtk_wmtd_worker][wlan]glBusFreeIrq:(INIT INFO) WIFI-OF: get wifi irq(187)
+[  329.526936]  (2)[358:mtk_wmtd_worker][wlan]wlanRemove:(INIT INFO) down g_halt_sem...
+[  329.527073]  (0)[2131:tx_thread][wlan]tx_thread:(INIT INFO) tx_thread should stop now...
+[  329.527099]  (0)[2131:tx_thread][wlan]wlanReleasePendingOid:(OID ERROR) OID Timeout! Releasing pending OIDs ..
+[  329.527119]  (0)[2131:tx_thread][wlan]tx_thread:(INIT INFO) mtk_sdiod stops
+[  329.647056]  (3)[358:mtk_wmtd_worker][wlan]aisFsmUninit:(SW1 INFO) ->aisFsmUninit()
+[  329.647089]  (3)[358:mtk_wmtd_worker][wlan]aisFsmGetNextRequest:(AIS INFO) aisFsmGetNextRequest
+[  329.647109]  (3)[358:mtk_wmtd_worker][wlan]scnUninit:(SCN INFO) ->scnUninit()
+[  329.647144]  (3)[358:mtk_wmtd_worker][wlan]rlmCancelRadioMeasurement:(RLM INFO) Cancel measurement, Beacon Req timer is 0 and TSM Req timer is 0
+[  329.781722]  (1)[358:mtk_wmtd_worker][wlan]wlanNetUnregister:(INIT INFO) unregister wireless_dev(0xdc688840), ifindex=9
+[  329.781833]  (1)[358:mtk_wmtd_worker][wlan]wlanRemove:(INIT INFO) wlanRemove ok
+[  329.781862]  (1)[358:mtk_wmtd_worker][WMT-CONSYS-HW][I]consys_hw_bt_vcn33_ctrl:WMT do BT/WIFI v3.3 off
+[  329.781878]  (1)[358:mtk_wmtd_worker][WMT-FUNC][W]wmt_func_wifi_off:WMT-FUNC: wmt call wlan remove ok
+[  329.781935]  (1)[358:mtk_wmtd_worker][STP-PSM] [I]_stp_psm_do_wait: STP is waiting state for ACT, i=1, state = 2
+[  329.782605]  (2)[345:mtk_stp_psm][STP-PSM] [I]_stp_psm_proc: pOp(bf08d7e8):1(1)
+[  329.782721]  (2)[357:mtk_wmtd][HIF-SDIO][I]wmtd_thread:pOp(bf08ed58):7(1)-0-2,bf00a538,0,0
+[  329.804945]  (2)[358:mtk_wmtd_worker][STP-PSM] [I]_stp_psm_do_wait: +Total waits for ACT takes 22989 usec
+[  329.805031]  (2)[357:mtk_wmtd][HIF-SDIO][I]wmtd_thread:pOp(bf08f190):32(2)-0-0,0,0,0
+[  329.805124]  (2)[358:mtk_wmtd_worker][WMT-CORE][I]wmt_core_dump_func_state:[AF FUNC OFF]status(b:0 f:0 g:0 w:0 lpbk:2 coredump:0 wmt:2 ant:0 sd1:0 sd2:0 stp:0)
+[  329.805188]  (2)[261:android.hardwar][HIF-SDIO][I]mtk_wcn_wmt_func_ctrl:OPID(31) type(3) ok
+[  329.805205]  (2)[261:android.hardwar][MTK-WIFI] WIFI_write: WMT turn off WIFI OK!
+[  329.805234]  (2)[261:android.hardwar][MTK-WIFI] WIFI_close: major 153 minor 0 (pid 261)
+[  329.806712]  (2)[1:init]init: PropSet [wlan.driver.status]=[unloaded] Done
+[  329.828314]  (2)[242:logd.auditd]type=1400 audit(1420059631.859:97): avc: denied { open } for pid=521 comm="aee_aed" path="/sys/kernel/debug/tracing/tracing_on" dev="tracefs" ino=1049 scontext=u:r:aee_aed:s0 tcontext=u:object_r:debugfs_tracing:s0 tclass=file permissive=0
+[  329.828377]  (2)[242:logd.auditd]type=1400 audit(1420059647.456:98): avc: denied { module_request } for pid=302 comm="wificond" kmod="netdev-wlan0" scontext=u:r:wificond:s0 tcontext=u:r:kernel:s0 tclass=system permissive=0
+[  329.838205]  (1)[345:mtk_stp_psm][STP-PSM] [I]_stp_psm_proc: pOp(bf08d878):0(1)
+[  329.839417]  (0)[1:init]init: PropSet [debug.mdl.sdswap.path]=[/mnt/sdcard] Done
+[  329.841724]  (3)[357:mtk_wmtd][HIF-SDIO][I]wmtd_thread:pOp(bf08eda0):7(1)-0-0,bf00a538,0,0
+[  330.421515]  (0)[143:hang_detect][Hang_Detect] hang_detect thread counts down 10:10, status 1.
+[  330.532449]  (0)[401:HwBinder:263_2][name:ion_mm_heap&][ion_dbg] alloc_pages order=4 cache=0
+[  330.600795]  (0)[279:merged_hal_serv][name:ion_mm_heap&][ion_dbg] alloc_pages order=1 cache=0
+[  330.769760]  (3)[279:merged_hal_serv][ION]warn: page pool alloc pages order: 0 time: 168916846 ns
+[  330.769786]  (3)[279:merged_hal_serv]Normal per-cpu:
+[  330.769799]  (3)[279:merged_hal_serv]CPU    0: hi:  186, btch:  31 usd: 178
+[  330.769811]  (3)[279:merged_hal_serv]CPU    1: hi:  186, btch:  31 usd: 165
+[  330.769823]  (3)[279:merged_hal_serv]CPU    2: hi:  186, btch:  31 usd: 125
+[  330.769835]  (3)[279:merged_hal_serv]CPU    3: hi:  186, btch:  31 usd: 178
+[  330.769845]  (3)[279:merged_hal_serv]HighMem per-cpu:
+[  330.769857]  (3)[279:merged_hal_serv]CPU    0: hi:  186, btch:  31 usd: 144
+[  330.769869]  (3)[279:merged_hal_serv]CPU    1: hi:  186, btch:  31 usd: 107
+[  330.769881]  (3)[279:merged_hal_serv]CPU    2: hi:  186, btch:  31 usd: 130
+[  330.769893]  (3)[279:merged_hal_serv]CPU    3: hi:  186, btch:  31 usd:  52
+[  330.769914]  (3)[279:merged_hal_serv]active_anon:22808 inactive_anon:34907 isolated_anon:128
+[  330.769914]  active_file:56353 inactive_file:55144 isolated_file:0
+[  330.769914]  unevictable:8366 dirty:143 writeback:28 unstable:0
+[  330.769914]  free:9433 slab_reclaimable:4952 slab_unreclaimable:7492
+[  330.769914]  mapped:91441 shmem:274 pagetables:5695 bounce:0
+[  330.769914]  free_cma:0
+[  330.769952]  (3)[279:merged_hal_serv]Normal free:24116kB min:2816kB low:9660kB high:10364kB active_anon:36128kB inactive_anon:61248kB active_file:102312kB inactive_file:102284kB unevictable:13136kB isolated(anon):128kB isolated(file):0kB present:524288kB managed:496388kB mlocked:13136kB dirty:572kB writeback:112kB mapped:164352kB shmem:268kB slab_reclaimable:19808kB slab_unreclaimable:29968kB kernel_stack:10848kB pagetables:22780kB unstable:0kB bounce:0kB free_cma:0kB writeback_tmp:0kB pages_scanned:0 all_unreclaimable? no
+[  330.769964] lowmem_reserve[]: 0 3608 3608
+[  330.770008]  (3)[279:merged_hal_serv]HighMem free:13616kB min:448kB low:6812kB high:7468kB active_anon:55104kB inactive_anon:78380kB active_file:123100kB inactive_file:118292kB unevictable:20328kB isolated(anon):384kB isolated(file):0kB present:461824kB managed:461824kB mlocked:18656kB dirty:0kB writeback:0kB mapped:201412kB shmem:828kB slab_reclaimable:0kB slab_unreclaimable:0kB kernel_stack:0kB pagetables:0kB unstable:0kB bounce:0kB free_cma:0kB writeback_tmp:0kB pages_scanned:0 all_unreclaimable? no
+[  330.770018] lowmem_reserve[]: 0 0 0
+[  330.770043] Normal: 959*4kB (UEM) 303*8kB (UEM) 61*16kB (UEM) 188*32kB (UEMR) 103*64kB (UMR) 8*128kB (MR) 1*256kB (R) 1*512kB (R) 1*1024kB (R) 1*2048kB (R) 0*4096kB = 24708kB
+[  330.770152] HighMem: 1163*4kB (UMR) 351*8kB (UMR) 131*16kB (MR) 8*32kB (UM) 4*64kB (U) 13*128kB (UM) 10*256kB (UM) 1*512kB (U) 1*1024kB (U) 0*2048kB 0*4096kB = 15828kB
+[  330.770259]  (3)[279:merged_hal_serv]121407 total pagecache pages
+[  330.770270]  (3)[279:merged_hal_serv]1233 pages in swap cache
+[  330.770283]  (3)[279:merged_hal_serv]Swap cache stats: add 69335, delete 68102, find 1159/33001
+[  330.770293]  (3)[279:merged_hal_serv]Free swap  = 678340kB
+[  330.770303]  (3)[279:merged_hal_serv]Total swap = 718652kB
+[  330.775060]  (3)[279:merged_hal_serv][ION]warn: ion mm heap allocate buffer size: 4149248 time: 174490308 ns --10
+[  330.775495]  (3)[279:merged_hal_serv][ION]warn: ion alloc buffer size: 4149248 time: 174947232 ns
+[  331.065253]  (2)[700:Binder:686_2]alarm_dev: set rtc 1546333200 0 - rtc 09:00:00 01/01/2019
+[  331.065333]  (2)[700:Binder:686_2]mtk_rtc_common: set tc time = 2019/01/01 09:00:00
+[  331.067123]  (0)[769:AlarmManager]alarm_dev: alarm 2 set 0.000000000
+[  331.067150] -(0)[769:AlarmManager]alarmtimer_enqueue, 0
+[  331.067200]  (0)[769:AlarmManager]alarm_dev: alarm 3 set 0.000000000
+[  331.072754]  (0)[769:AlarmManager]alarm_dev: alarm 3 set 0.000000000
+[  331.075534]  (0)[769:AlarmManager]alarm_dev: alarm 3 set 0.000000000
+[  331.136024]  (0)[769:AlarmManager]alarm_dev: alarm 2 set 340.210000000
+[  331.136073] -(0)[769:AlarmManager]alarmtimer_enqueue, 340210000000
+[  331.179007] -(0)[1:init]Kernel panic - not syncing: Attempted to kill init! exitcode=0x00007f00
+[  331.179007] 
+[  331.179040] -(1)[2617:BackgroundTask ]CPU1: stopping
+[  331.179059] -(1)[2617:BackgroundTask ]CPU: 1 PID: 2617 Comm: BackgroundTask  Tainted: G        W  O   3.18.79 #1
+[  331.179069] Backtrace: 
+[  331.179101] -(1)[2617:BackgroundTask ][<c010b7a8>] (dump_backtrace) from [<c010b9c0>] (show_stack+0x18/0x1c)
+[  331.179111]  r7:00000080 r6:00000000 r5:600b0193 r4:c0e41c0c
+[  331.179150] -(1)[2617:BackgroundTask ][<c010b9a8>] (show_stack) from [<c0933bf0>] (dump_stack+0x88/0xa8)
+[  331.179168] -(1)[2617:BackgroundTask ][<c0933b68>] (dump_stack) from [<c010e270>] (handle_IPI+0x200/0x2ec)
+[  331.179177]  r7:00000005 r6:e0802000 r5:c0d69478 r4:00000001
+[  331.179212] -(1)[2617:BackgroundTask ][<c010e070>] (handle_IPI) from [<c010030c>] (do_IPI+0x10/0x14)
+[  331.179222]  r10:8fa7c6a0 r9:00000000 r8:10c5387d r7:10c5387d
+[  331.179257] -(1)[2617:BackgroundTask ][<c01002fc>] (do_IPI) from [<c010c94c>] (__irq_usr+0x4c/0xc0)
+[  331.179269] -(1)[2617:BackgroundTask ]Exception stack(0xcaec9fb0 to 0xcaec9ff8)
+[  331.179284] -(1)[2617:BackgroundTask ]9fa0:                                     00000000 9141d400 8fa7c6a0 00000000
+[  331.179300] -(1)[2617:BackgroundTask ]9fc0: 00000000 00000000 00000000 8fa7c5b8 000010e9 00000000 8fa7c6a0 8fa7c648
+[  331.179315] -(1)[2617:BackgroundTask ]9fe0: 6fe391e8 8fa7c568 aa809493 aa612752 400b0030 ffffffff
+[  331.179329] -(3)[1446:oid.setupwizard]CPU3: stopping
+[  331.179345] -(3)[1446:oid.setupwizard]CPU: 3 PID: 1446 Comm: oid.setupwizard Tainted: G        W  O   3.18.79 #1
+[  331.179354] Backtrace: 
+[  331.179377] -(3)[1446:oid.setupwizard][<c010b7a8>] (dump_backtrace) from [<c010b9c0>] (show_stack+0x18/0x1c)
+[  331.179386]  r7:00000080 r6:00000000 r5:600f0193 r4:c0e41c0c
+[  331.179422] -(3)[1446:oid.setupwizard][<c010b9a8>] (show_stack) from [<c0933bf0>] (dump_stack+0x88/0xa8)
+[  331.179439] -(3)[1446:oid.setupwizard][<c0933b68>] (dump_stack) from [<c010e270>] (handle_IPI+0x200/0x2ec)
+[  331.179448]  r7:00000005 r6:e0802000 r5:c0d69478 r4:00000003
+[  331.179483] -(3)[1446:oid.setupwizard][<c010e070>] (handle_IPI) from [<c010030c>] (do_IPI+0x10/0x14)
+[  331.179492]  r10:ae123560 r9:beb09f98 r8:10c5387d r7:10c5387d
+[  331.179526] -(3)[1446:oid.setupwizard][<c01002fc>] (do_IPI) from [<c010c94c>] (__irq_usr+0x4c/0xc0)
+[  331.179538] -(3)[1446:oid.setupwizard]Exception stack(0xcef89fb0 to 0xcef89ff8)
+[  331.179552] -(3)[1446:oid.setupwizard]9fa0:                                     ae125230 00000000 00000010 00000010
+[  331.179569] -(3)[1446:oid.setupwizard]9fc0: ae989240 ae125230 ae125150 ae801390 ae989240 beb09f98 ae123560 00000000
+[  331.179585] -(3)[1446:oid.setupwizard]9fe0: fffe7f28 beb09f70 ae908d01 ae95b6b0 400f0010 ffffffff
+[  331.179598] -(2)[2891:queued-work-loo]CPU2: stopping
+[  331.179614] -(2)[2891:queued-work-loo]CPU: 2 PID: 2891 Comm: queued-work-loo Tainted: G        W  O   3.18.79 #1
+[  331.179622] Backtrace: 
+[  331.179645] -(2)[2891:queued-work-loo][<c010b7a8>] (dump_backtrace) from [<c010b9c0>] (show_stack+0x18/0x1c)
+[  331.179655]  r7:00000080 r6:00000000 r5:600b0193 r4:c0e41c0c
+[  331.179691] -(2)[2891:queued-work-loo][<c010b9a8>] (show_stack) from [<c0933bf0>] (dump_stack+0x88/0xa8)
+[  331.179708] -(2)[2891:queued-work-loo][<c0933b68>] (dump_stack) from [<c010e270>] (handle_IPI+0x200/0x2ec)
+[  331.179717]  r7:00000005 r6:e0802000 r5:c0d69478 r4:00000002
+[  331.179752] -(2)[2891:queued-work-loo][<c010e070>] (handle_IPI) from [<c010030c>] (do_IPI+0x10/0x14)
+[  331.179761]  r10:d0fecb54 r9:c9229f20 r8:df7f5380 r7:c9229ef4
+[  331.179795] -(2)[2891:queued-work-loo][<c01002fc>] (do_IPI) from [<c010c58c>] (__irq_svc+0x4c/0xe0)
+[  331.179807] -(2)[2891:queued-work-loo]Exception stack(0xc9229ec0 to 0xc9229f08)
+[  331.179824] -(2)[2891:queued-work-loo]9ec0: df7f5380 c9228000 00000800 0000e597 d0fec780 df7f5380 d0fec780 c9228000
+[  331.179841] -(2)[2891:queued-work-loo]9ee0: df7f5380 c9229f20 d0fecb54 c9229f1c c9229f20 c9229f10 c09385ac c093c260
+[  331.179853] -(2)[2891:queued-work-loo]9f00: 600b0013 ffffffff
+[  331.179872] -(2)[2891:queued-work-loo][<c093c238>] (_raw_spin_unlock_irq) from [<c09385ac>] (__schedule+0x664/0x700)
+[  331.179890] -(2)[2891:queued-work-loo][<c0937f48>] (__schedule) from [<c09386d8>] (schedule+0x90/0x9c)
+[  331.179899]  r10:00000800 r9:c9228000 r8:c0106684 r7:1ea8b000
+[  331.179936] -(2)[2891:queued-work-loo][<c0938648>] (schedule) from [<c014d64c>] (sys_sched_yield+0x80/0x90)
+[  331.179954] -(2)[2891:queued-work-loo][<c014d5cc>] (sys_sched_yield) from [<c0106660>] (__sys_trace_return+0x0/0x20)
+[  331.179970] disable aee kernel api
+[  331.180051] -(0)[1:init]mrdump: cpu[0] tsk:df0b0000 ti:df09e000
+[  331.518045] -(0)[1:init]size= 4096, left= 2432.
+[  331.518068] -(0)[1:init]R[00]=0x200029b  R[04]=0x0  R[08]=0x81fe0002  R[0C]=0x0  R[10]=0x0  R[14]=0x780000
+[  331.518083] -(0)[1:init]R[30]=0x90002  R[34]=0x2003099  R[38]=0x2b625  R[3C]=0x1  R[40]=0x900  R[44]=0x800
+[  331.518098] -(0)[1:init]R[48]=0x900  R[4C]=0x700  R[50]=0x8  R[54]=0x145  R[58]=0x900  R[5C]=0x0
+[  331.518113] -(0)[1:init]R[60]=0x0  R[70]=0x1004  R[74]=0xa000c8  R[78]=0x0  R[7C]=0x0  R[80]=0x900
+[  331.518127] -(0)[1:init]R[84]=0x0  R[88]=0x0  R[8C]=0x0  R[90]=0x9e74b000  R[94]=0x9e74b01c  R[98]=0x6508
+[  331.518142] -(0)[1:init]R[9C]=0x6  R[A0]=0x0  R[A4]=0x0  R[A8]=0x1000  R[B0]=0x403c0007  R[B4]=0xfffe00c9
+[  331.518157] -(0)[1:init]R[B8]=0x480980f  R[C0]=0x0  R[C4]=0x0 R[C8]=0x0  R[CC]=0x0   R[D0]=0x0
+[  331.518170] -(0)[1:init]R[D4]=0x0	R[F0]=0x0	R[F8]=0x0 R[FC]=0x0  R[110]=0x0
+[  331.518181] -(0)[1:init]R[114]=0x20140512  R[118]=0x0
+[  331.518195] -(0)[1:init]R[a0]=0x0  R[a4]=0x0  R[a0]=0x1  R[a4]=0x0  R[a0]=0x2  R[a4]=0x0  R[a0]=0x3  R[a4]=0x0
+[  331.518209] -(0)[1:init]R[a0]=0x4  R[a4]=0x200  R[a0]=0x5  R[a4]=0x200  R[a0]=0x6  R[a4]=0x200  R[a0]=0x7  R[a4]=0x200
+[  331.518223] -(0)[1:init]R[a0]=0x8  R[a4]=0x110102  R[a0]=0x9  R[a4]=0x110102  R[a0]=0xa  R[a4]=0x110102  R[a0]=0xb  R[a4]=0x110102
+[  331.518237] -(0)[1:init]R[a0]=0xc  R[a4]=0x1  R[a0]=0xd  R[a4]=0x1  R[a0]=0xe  R[a4]=0x1  R[a0]=0xf  R[a4]=0x1
+[  331.518251] -(0)[1:init]R[a0]=0x10  R[a4]=0x0  R[a0]=0x11  R[a4]=0x0  R[a0]=0x12  R[a4]=0x0  R[a0]=0x13  R[a4]=0x0
+[  331.518265] -(0)[1:init]R[a0]=0x14  R[a4]=0x1000  R[a0]=0x15  R[a4]=0x1000  R[a0]=0x16  R[a4]=0x1000  R[a0]=0x17  R[a4]=0x1000
+[  331.518279] -(0)[1:init]R[a0]=0x18  R[a4]=0x0  R[a0]=0x19  R[a4]=0x0  R[a0]=0x1a  R[a4]=0x0  R[a0]=0x1b  R[a4]=0x0
+[  331.518293] -(0)[1:init]R[a0]=0x1c  R[a4]=0x0  R[a0]=0x1d  R[a4]=0x0  R[a0]=0x1e  R[a4]=0x0  R[a0]=0x1f  R[a4]=0x0
+[  331.518307] -(0)[1:init]R[a0]=0x20  R[a4]=0x0  R[a0]=0x21  R[a4]=0x0  R[a0]=0x22  R[a4]=0x0  R[a0]=0x23  R[a4]=0x0
+[  331.518321] -(0)[1:init]R[a0]=0x24  R[a4]=0x0  R[a0]=0x25  R[a4]=0x0  R[a0]=0x26  R[a4]=0x0  R[a0]=0x27  R[a4]=0x0
+[  334.225682] -(0)[1:init]
+[  334.225682]  No log for WDT
+[  334.243819] -(0)[1:init]ipanic_data_to_sd: dump SYS_WQ_LOG failed[-3]
+[  334.243831] -(0)[1:init]ipanic_data_to_sd: dump SYS_MMPROFILE failed[-3]
+[  334.256358] -(0)[1:init]ipanic_hang_detect: addr:c100eb18, size:100000
+[  336.159421] Rebooting in 1 seconds..
+[  337.159442] -(0)[1:init]machine_restart, arm_pm_restart(  (null))
+[  337.159458] -(0)[1:init]ARCH_RESET happen!!!
+[  337.159470] -(0)[1:init]arch_reset: cmd = NULL
+[  337.159485] -(0)[1:init]CPU: 0 PID: 1 Comm: init Tainted: G        W  O   3.18.79 #1
+[  337.159495] Backtrace: 
+[  337.159521] -(0)[1:init][<c010b7a8>] (dump_backtrace) from [<c010b9c0>] (show_stack+0x18/0x1c)
+[  337.159530]  r7:00000080 r6:00000000 r5:60070093 r4:c0e41c0c
+[  337.159566] -(0)[1:init][<c010b9a8>] (show_stack) from [<c0933bf0>] (dump_stack+0x88/0xa8)
+[  337.159585] -(0)[1:init][<c0933b68>] (dump_stack) from [<c06b3228>] (arch_reset+0x4c/0x13c)
+[  337.159594]  r7:00000000 r6:c0e1fe48 r5:00000000 r4:00000000
+[  337.159628] -(0)[1:init][<c06b31dc>] (arch_reset) from [<c06b3340>] (mtk_arch_reset_handle+0x28/0x40)
+[  337.159638]  r7:c0f07980 r6:00000000 r5:00000000 r4:00000000
+[  337.159673] -(0)[1:init][<c06b3318>] (mtk_arch_reset_handle) from [<c013ff38>] (notifier_call_chain+0x250/0x2a0)
+[  337.159682]  r5:c1126450 r4:00000000
+[  337.159707] -(0)[1:init][<c013fce8>] (notifier_call_chain) from [<c0140014>] (__atomic_notifier_call_chain+0x40/0x54)
+[  337.159716]  r10:13333110 r9:c0e41bf4 r8:c0ec2638 r7:ffffffff
+[  337.159752] -(0)[1:init][<c013ffd4>] (__atomic_notifier_call_chain) from [<c0140048>] (atomic_notifier_call_chain+0x20/0x28)
+[  337.159761]  r7:c0e2aea4 r6:000003e8 r5:c0ec20e8 r4:00000000
+[  337.159796] -(0)[1:init][<c0140028>] (atomic_notifier_call_chain) from [<c0141294>] (do_kernel_restart+0x20/0x2c)
+[  337.159813] -(0)[1:init][<c0141274>] (do_kernel_restart) from [<c0107ad0>] (machine_restart+0x70/0x9c)
+[  337.159830] -(0)[1:init][<c0107a60>] (machine_restart) from [<c0141128>] (emergency_restart+0x1c/0x20)
+[  337.159839]  r7:c0e2aea4 r6:000003e8 r5:000003e8 r4:00000001
+[  337.159873] -(0)[1:init][<c014110c>] (emergency_restart) from [<c0932a2c>] (panic+0x114/0x1ec)
+[  337.159891] -(0)[1:init][<c093291c>] (panic) from [<c0125e94>] (do_exit+0x548/0x980)
+[  337.159900]  r3:df0c0000 r2:df09e000 r1:00007f00 r0:c0b4ef60
+[  337.159927]  r7:c0e2c86c
+[  337.159947] -(0)[1:init][<c012594c>] (do_exit) from [<c01263e4>] (do_group_exit+0xdc/0xe0)
+[  337.159956]  r7:00007f00
+[  337.159976] -(0)[1:init][<c0126308>] (do_group_exit) from [<c0126400>] (__wake_up_parent+0x0/0x28)
+[  337.159985]  r7:000000f8 r6:bee57c4c r5:00000001 r4:00000001
+[  337.160020] -(0)[1:init][<c01263e8>] (SyS_exit_group) from [<c01064c0>] (ret_fast_syscall+0x0/0x44)
+[  337.160174] -(0)[1:init]****************dump wdt reg start*************
+[  337.160185] -(0)[1:init]MTK_WDT_MODE:0x14
+[  337.160195] -(0)[1:init]MTK_WDT_LENGTH:0xf000
+[  337.160206] -(0)[1:init]MTK_WDT_RESTART:0x0
+[  337.160216] -(0)[1:init]MTK_WDT_STATUS:0x40000000
+[  337.160227] -(0)[1:init]MTK_WDT_INTERVAL:0xffe
+[  337.160237] -(0)[1:init]MTK_WDT_SWRST:0x0
+[  337.160247] -(0)[1:init]MTK_WDT_NONRST_REG:0x0
+
+
+分析过程：
+   先查看是那种重启KE/HWT/HW_REBOOT/EE/NE： db存放在data/vendor/mtklog/aee_exp
+   或者adb shell dumpsys dropbox --print 可以导出
+   或着 cat proc/last_kmsg
+   可以看到信息：
+[  331.179007] -(0)[1:init]Kernel panic - not syncing: Attempted to kill init! exitcode=0x00007f00
+......
+[  334.225682]  No log for WDT
+[  334.243819] -(0)[1:init]ipanic_data_to_sd: dump SYS_WQ_LOG failed[-3]
+[  334.243831] -(0)[1:init]ipanic_data_to_sd: dump SYS_MMPROFILE failed[-3]
+[  334.256358] -(0)[1:init]ipanic_hang_detect: addr:c100eb18, size:100000
+[  336.159421] Rebooting in 1 seconds..
+
+是init 进程出现了问题。
+    Line 2793: [  242.474943] -(0)[1:init]Kernel panic - not syncing: Attempted to kill init! exitcode=0x00007f00
+    Line 2855: [  242.476125] -(0)[1:init]disable aee kernel api
+   
+检查init 经常是否有定制化，检查是否添加其他进程，同时查看init log发现
+	Line 228: [  311.125299]  (3)[1:init]init: property_set("ro.boottime.memsicp", "311121697624") failed: property already set
+	Line 229: [  311.200984]  (1)[1:init]init: Sending signal 9 to service 'memsicp' (pid 2437) process group...
+	Line 231: [  311.201791]  (1)[1:init]init: PropSet [init.svc.memsicp]=[restarting] Done
+	Line 263: [  316.123929]  (0)[1:init]init: starting service 'memsicp'...
+	Line 264: [  316.142452]  (0)[1:init]init: PropSet [init.svc.memsicp]=[running] Done
+	Line 265: [  316.142604]  (0)[1:init]init: property_set("ro.boottime.memsicp", "316140085203") failed: property already set
+	Line 277: [  316.218384]  (1)[1:init]init: Sending signal 9 to service 'memsicp' (pid 2543) process group...
+	Line 279: [  316.219004]  (1)[1:init]init: PropSet [init.svc.memsicp]=[restarting] Done
+	Line 288: [  321.146130]  (1)[1:init]init: starting service 'memsicp'...
+	Line 289: [  321.149634]  (1)[1:init]init: PropSet [init.svc.memsicp]=[running] Done
+	Line 290: [  321.149820]  (1)[1:init]init: property_set("ro.boottime.memsicp", "321147092396") failed: property already set
+	Line 292: [  321.236387]  (1)[1:init]init: Sending signal 9 to service 'memsicp' (pid 2642) process group...
+	Line 294: [  321.237191]  (1)[1:init]init: PropSet [init.svc.memsicp]=[restarting] Done
+	Line 330: [  326.160611]  (1)[1:init]init: starting service 'memsicp'...
+	Line 331: [  326.164157]  (1)[1:init]init: PropSet [init.svc.memsicp]=[running] Done
+  此进程异常，去除memsicp 发现，问题解决
+  （memsicp 是mxc400x gsensor的库）
+   
